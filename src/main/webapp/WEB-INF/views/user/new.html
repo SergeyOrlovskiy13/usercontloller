@@ -14,9 +14,15 @@
     <input type="text" th:field="*{surname}" id="surname"/>
     <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Name Error2</div>
     <br/>
-    <label for="birthday">Enter birthday</label>
-    <input type="text" th:field="*{birthday}" id="birthday"/>
-    <div style="color:red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Name Error6</div>
+    <label for="year">Enter year</label>
+    <input type="text" th:field="*{year}" id="year"/>
+<!--    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Name Error6</div>-->
+    <label for="month">Enter month</label>
+    <input type="text" th:field="*{month}" id="month"/>
+<!--    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Name Error7</div>-->
+    <label for="year">Enter day</label>
+    <input type="text" th:field="*{day}" id="day"/>
+<!--    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{day}">Name Error6</div>-->
     <br/>
     <label for="email">Enter email</label>
     <input type="text" th:field="*{email}" id="email"/>

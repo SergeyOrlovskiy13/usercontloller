@@ -19,35 +19,19 @@ public class User {
     String username;
     @NotEmpty(message = "surname not be empty")
     String surname;
+
+    int year;
+
+    int month;
+
+    int day;
     @NotEmpty(message = "email not be empty")
     @Email(message = "email not valid")
     String email;
-    @NotEmpty(message = "birthday not be empty")
-    LocalDate birthday;
+
+
     String address;
     int phone;
 
-    public int getIduser() {
-        return iduser;
-    }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public int getPhone() {
-        return phone;
-    }
 }

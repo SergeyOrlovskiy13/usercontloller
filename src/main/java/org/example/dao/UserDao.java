@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
@@ -27,19 +30,27 @@ public class UserDao {
                 .stream().findAny().orElse(null);
     }
     public void save(User user) {
-        jdbcTemplate.update("INSERT INTO user VALUES(1, ?, ?,?, ?,?,?)",
-                user.getUsername(), user.getSurname(),user.getBirthday(), user.getEmail(), user.getAddress(), user.getPhone());
+        int i=1;
+        jdbcTemplate.update("INSERT INTO user VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?)", i, user.getUsername(), user.getSurname(),user.getYear(),user.getMonth(),user.getDay(), user.getEmail(), user.getAddress(), user.getPhone());
     }
 
     public void update(int id, User updatedUser) {
-        jdbcTemplate.update("UPDATE user SET username=?, surname=?, email=?, address=?, phone=? WHERE iduser=?",
-                updatedUser.getUsername(), updatedUser.getSurname(), updatedUser.getBirthday(), updatedUser.getEmail(),
+        jdbcTemplate.update("UPDATE user SET username=?, surname=?, year=?, month=?, day=?, email=?, address=?, phone=? WHERE iduser=?",
+                updatedUser.getUsername(), updatedUser.getSurname(), updatedUser.getYear(), updatedUser.getMonth(), updatedUser.getDay(), updatedUser.getEmail(),
                 updatedUser.getAddress(), updatedUser.getPhone(),id);
     }
 
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM user WHERE iduser=?", id);
     }
+
+    public User showBetweenYear(int year1, int year2){
+        return (User) jdbcTemplate.query("SELECT * FROM user WHERE year BETWEEN ? and ?"
+                        , new Object[]{year1, year2},new BeanPropertyRowMapper<>(User.class))
+                .stream().findAny().orElse(null);
+    }
+
+
 
 
 
